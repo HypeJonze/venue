@@ -1,0 +1,12 @@
+id,name,venue_type_ids
+mood,Mood,"club, bar, resto, live_music, workspace, "
+food,Food,"resto, bar"
+drinks,Drinks,"resto, bar"
+atmosphere,Atmosphere,"club, bar, resto, special_event"
+extras,Extras,"club, bar, resto, live_music, special_event, workspace"
+music,Music,"club, bar, live_music"
+crowd,Crowd,"club, bar, special_event "
+food_and_drink,Food & Beverage,workspace
+neighbourhood,Neighbourhood,workspace
+date,Date,"special_event, live_music"
+event_type,Event type,special_event

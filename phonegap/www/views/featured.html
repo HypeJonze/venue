@@ -1,0 +1,19 @@
+<ion-view title="{{logoTitle}}" right-buttons="rightButtons" class="featured-content-view">
+  <div ng-include src="'views/loading.html'" data-ng-show="!dataLoaded"></div>
+  <div class="centered featured-heading" data-ng-show="dataLoaded">
+    <h5>Featured Venues</h5>
+  </div>
+  <ion-content has-header="true" has-tabs="true" scroll="false">
+    <ion-slide-box class="featured-slider" data-ng-show="dataLoaded">
+      <ion-slide data-ng-repeat="venue in featured">
+        <div class="featured-display" style="width:{{viewportWidth()}}px;max-height:{{viewportHeight() - 112}}px;overflow:hidden;position:relative;" data-ng-click="$state.go('view_venue', {venueId: venue.id})">
+          <img width="100%" ng-src="{{venue.photos[0].image.path + 'portrait_large_' + venue.photos[0].image.filename}}" />
+          <div class="featured-details">
+            <h5>{{venue.name}}</h5>
+            <h5>{{venue.intersection}}</h5>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,24 @@
+<ion-view right-buttons="rightButtons" title="{{logoTitle}}">
+  <div ng-include src="'views/loading.html'" data-ng-show="!menuDataLoaded"></div>
+  <div class="centered page-header-container has-header keywords-header">
+    <h5>Refine your search by choosing up to 6 experiences</h5>
+  </div>
+  <ion-content padding="false" has-header="true" has-tabs="true" has-footer="true" class="has-page-title">
+    <div class="button-list categories-keywords-list">
+      <div data-ng-repeat="category in getCategories($stateParams.venueTypeId)">
+        <button data-ng-click="selectCategory(category.id)" class="button-list-item button-block button-ghost button-category" data-ng-if="category.keywords.length > 0">
+          <h4 class="drop-shadow">{{category.name}}</h4>
+          <img class="down-arrow" src="img/down-arrow.png" />
+        </button>
+        <div data-ng-show="selected_category_id == category.id" class="keyword-button-list">
+          <button data-ng-click="selectKeyword(keyword.id)" data-ng-class="{selected: keywordIndex(keyword.id) >= 0}" class="button-block button-list-item keyword-button-list-item" data-ng-repeat="keyword in category.keywords">
+            <h5>{{keyword.name}}</h5>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <div class="bar bar-footer bar-firetruck sub-footer">
+    <div data-ng-click="performSearch()" class="title">Find Venue</div>
+  </div>
+</ion-view>

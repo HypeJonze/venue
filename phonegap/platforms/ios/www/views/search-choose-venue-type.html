@@ -1,0 +1,13 @@
+<ion-view right-buttons="rightButtons" title="{{logoTitle}}">
+  <div ng-include src="'views/loading.html'" data-ng-show="!menuDataLoaded"></div>
+  <div class="centered page-header-container has-header" data-ng-show="menuDataLoaded">
+    <h5>Pick your mood</h5>
+  </div>
+  <ion-content padding="false" has-header="true" has-tabs="true" class="has-page-title" data-ng-show="menuDataLoaded">
+    <div class="button-list">
+      <button data-ng-click="$state.go('search_choose_location', {venueTypeId:venue_type.id})" ng-repeat="venue_type in menuData.venue_types" class="button-list-item button-block button-full button-ghost">
+        <h4 class="drop-shadow">{{venue_type.name}}</h4>
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

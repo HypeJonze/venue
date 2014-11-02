@@ -1,0 +1,134 @@
+id,name,venue_type_ids,category_id
+Impress a Date,Impress a Date,"resto, bar",mood
+Dinner Before the Club,Dinner Before the Club,resto,mood
+Out with Family,Out with Family,resto,mood
+Out with Friends,Out with Friends,"resto, bar",mood
+Be Adventurous,Be Adventurous,resto,mood
+Unwind,Unwind,"resto, bar",mood
+Discover a Hidden Gem,Discover a Hidden Gem,bar,mood
+Get Drunk,Get Drunk,bar,mood
+Try Creative Cocktails,Try Creative Cocktails,bar,mood
+Meet New People,Meet New People,bar,mood
+Dress Up,Dress Up,bar,mood
+Dress Down,Dress Down,bar,mood
+Get Dressed Up,Get Dressed Up,club,mood
+Recently Single/Ready to Mingle,"Recently Single, Ready to Mingle",club,mood
+Dance Party,Dance Party,"club, bar",mood
+Let Loose,Let Loose,club,mood
+Working Alone,Working Alone,workspace,mood
+Working in a Group,Working in a Group,workspace,mood
+Reading,Reading,workspace,mood
+Getting Inspired,Getting Inspired,workspace,mood
+Chillout,Chillout,live_music,mood
+Rock Out,Rock Out,live_music,mood
+Dance & Party,Dance & Party,live_music,mood
+Unique Party,Unique Party,special_event,event_type
+Live Comedy,Live Comedy,special_event,event_type
+Poetry Slam,Poetry Slam,special_event,event_type
+Art Gallery,Art Gallery,special_event,event_type
+Fashion Show,Fashion Show,special_event,event_type
+Creative Types,Creative Types,special_event,event_type
+Networking Event,Networking Event,special_event,event_type
+Mixed,Mixed,"bar, club",music
+Top 40,Top 40,"bar, club",music
+Chill/Deep House,"Chill, Deep House",bar,music
+Electronic/House,"Electronic, House","bar, club, live_music",music
+Rock/Indie,"Rock, Indie","bar, live_music",music
+Acoustic,Acoustic,live_music,music
+Hip Hop/Reggae,"Hip Hop, Reggae","bar, club, live_music",music
+Jazz,Jazz,"bar, live_music",music
+Live Music,Live Music,bar,music
+Electronic Dance Music,Electronic Dance Music,club,music
+Rock/Alternative,"Rock, Alternative",club,music
+Latin,Latin,club,music
+International DJ,International DJ,live_music,music
+International Artist,International Artist,live_music,music
+Local Artist,Local Artist,live_music,music
+Pub Food,Pub Food,bar,food
+Small Plates/Apps,"Small Plates, Apps",bar,food
+Comfort Foods,Comfort Foods,resto,food
+American Classics,American Classics,resto,food
+Italian,Italian,resto,food
+Spanish,Spanish,resto,food
+Asian,Asian,resto,food
+Mexican,Mexican,resto,food
+Mediterranean/Mid-Eastern,"Mediterranean, Mid-Eastern",resto,food
+French Bistro,French Bistro,resto,food
+Seafood,Seafood,resto,food
+Oysters,Oysters,resto,food
+Tapas,Tapas,resto,food
+Sushi,Sushi,resto,food
+Burgers,Burgers,"resto, bar",food
+Vegetarian Menu,Vegetarian Menu,resto,food
+Carnivore Menu,Carnivore Menu,resto,food
+Brunch,Brunch,"resto, bar",food
+Unique Wine List,Unique Wine List,"resto, bar",drinks
+Wine & Cheese,Wine & Cheese,resto,drinks
+Craft Beer,Craft Beer,"resto, bar",drinks
+Beers on Tap,Beers on Tap,"resto, bar",drinks
+Specialty Tequila,Specialty Tequila,"resto, bar",drinks
+Specialty Bourbon/Whiskey,"Specialty Bourbon, Whiskey","resto,  bar",drinks
+Unique Cocktails,Unique Cocktails,"resto, bar",drinks
+Martinis/Margaritas,"Martinis, Margaritas","resto, bar",drinks
+Caffeinated Beverages,Caffeinated Beverages,resto,drinks
+Coffee/Tea,Coffee,workspace,food_and_drink
+Lattes & Machiattos,Lattes & Machiattos,workspace,food_and_drink
+Sandwiches,Sandwiches,workspace,food_and_drink
+Salads,Salads,workspace,food_and_drink
+Sweets,Sweets,workspace,food_and_drink
+UofT,UofT,workspace,neighbourhood
+Ryerson,Ryerson,workspace,neighbourhood
+Downtown,Downtown,workspace,neighbourhood
+Uptown,Uptown,workspace,neighbourhood
+East End,East End,workspace,neighbourhood
+West End,West End,workspace,neighbourhood
+Energetic,Energetic,resto,atmosphere
+Romantic,Romantic,resto,atmosphere
+Modern,Modern,resto,atmosphere
+Upscale,Upscale,"resto, bar, club, special_event",atmosphere
+Fine Dining,Fine Dining,resto,atmosphere
+Casual,Casual,"resto, bar, club, special_event",atmosphere
+Cozy,Cozy,"resto, bar",atmosphere
+Trendy,Trendy,"resto, bar",atmosphere
+Artistic,Artistic,"resto, special_event",atmosphere
+Dive Bar,Dive Bar,bar,atmosphere
+Multi Room,Multi Room,club,atmosphere
+Rooftop Patio,Rooftop Patio,"club, bar",atmosphere
+High Energy,High Energy,club,atmosphere
+Dressy,Dressy,special_event,atmosphere
+Mixed Crowd,Mixed Crowd,"bar, club, special_event",crowd
+College,College,"bar, club",crowd
+Sophisticated,Sophisticated,"bar, club",crowd
+Hipster,Hipster,bar,crowd
+After Work,After Work,bar,crowd
+19-25,19-25,"bar, club",crowd
+25-40,25-40,"bar, club",crowd
+40+,40+,bar,crowd
+21+/23+,"21+, 23+",club,crowd
+Young Professionals,Young Professionals,special_event,crowd
+Artists,Artists,special_event,crowd
+Mature,Mature,special_event,crowd
+Patio,Patio,"resto, bar",extras
+Live Music,Live Music,resto,extras
+Corporate/Private Bookings,Corporate/Private Bookings,resto,extras
+Reserve a Table,Reserve a Table,resto,extras
+Couches/Lounging,"Couches, Lounging","resto, bar",extras
+Ping Pong,Ping Pong,bar,extras
+Pool Table,Pool Table,bar,extras
+Board Games,Board Games,bar,extras
+Burlesque,Burlesque,club,extras
+VIP & Bottle Service,VIP & Bottle Service,"club, special_event, live_music",extras
+Ladies Free,Ladies Free,club,extras
+Free Before 11,Free Before 11,club,extras
+Free Before 12,Free Before 12,club,extras
+Open Weekdays,Open Weekdays,club,extras
+Drink Specials,Drink Specials,"club, bar",extras
+Quiet Spot,Quiet Spot,workspace,extras
+Free Wifi,Free Wifi,workspace,extras
+Lots of Outlets,Lots of Outlets,workspace,extras
+Big Tables,Big Tables,workspace,extras
+Free Entry,Free Entry,"special_event, live_music",extras
+Advanced Tickets,Advanced Tickets,"special_event, live_music",extras
+Food Menu,Food Menu,special_event,extras
+Live DJ,Live DJ,special_event,extras
+Live Performance,Live Performance,special_event,extras

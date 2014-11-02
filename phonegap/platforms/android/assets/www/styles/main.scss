@@ -1,0 +1,512 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
+  height: 100%;
+  background: url(../img/toronto_bg.jpg) no-repeat center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body.search_choose_keywords {
+  background: url(../img/nightlife_bg.jpg) no-repeat center top;
+}
+body.view_venue, body.about, body.search_results {
+  background: #000;
+}
+body.featured {
+  background: #222;
+}
+
+ion-view.pane {
+  background: none;
+}
+@font-face {
+  font-family: "open-sans";
+  src: url(../fonts/OpenSans-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "yellowtailregular";
+  src: url(../fonts/yellowtail/Yellowtail-Regular-webfont.eot);
+  src: url(../fonts/yellowtail/Yellowtail-Regular-webfont.eot?#iefix) format("embedded-opentype"),
+       url(../fonts/yellowtail/Yellowtail-Regular-webfont.woff) format("woff"),
+       url(../fonts/yellowtail/Yellowtail-Regular-webfont.ttf) format("truetype"),
+       url(../fonts/yellowtail/Yellowtail-Regular-webfont.svg#yellowtailregular) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+       -o-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin animate($rate) {
+  -webkit-transition:all linear $rate;
+  -moz-transition:all linear $rate;
+  -ms-transition:all linear $rate;
+  -o-transition:all linear $rate;
+  transition:all linear $rate;
+}
+
+@mixin box-sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
+  -webkit-box-shadow:$top $left $blur $color #{$inset};
+  -moz-box-shadow:$top $left $blur $color #{$inset};
+  box-shadow:$top $left $blur $color #{$inset};
+}
+
+h3 {
+  color: #FFFFFF;
+  font-family: "open-sans";
+}
+
+h4 {
+  color: #FFFFFF;
+  font-family: "open-sans";
+  font-weight: bold;
+}
+
+h5 {
+  color: #FFFFFF;
+  font-family: "open-sans";
+}
+
+h4.drop-shadow {
+  text-shadow: -1px 1px 7px #000000;
+}
+
+.page-header-container {
+  h5 {
+    margin-top: 20px;
+  }
+}
+
+.page-header-container.keywords-header {
+  h5 {
+    margin-top: 16px;
+  }
+}
+
+p {
+  color: #999999;
+}
+.header-logo {
+  height: 22px;
+  margin-top: 12px;
+}
+
+/* Search page Results */
+.venue-search-result-tile {
+  min-height: 135px;
+  position: relative;
+  img {
+    display: block;
+  }
+  .keyword-count-badge {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+  }
+  .venue-search-result-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px;
+    color: #000000;
+    font-weight: bold;
+    h5, h6 {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 2px 0;
+      color: #000000;
+    }
+  }
+  background-color: rgba(0, 0, 0, 0.7);
+}
+/* END Search Results Page */
+
+/* Search Results */
+.search-results-content {
+  .no-matches-message {
+    @include border-radius(10px);
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #65c9db;
+    color: #65c9db;
+    text-align: center;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .row-container {
+    .row {
+      // margin: 0 auto;
+    }
+  }
+}
+/* END Search Results */
+
+/* Featured Page */
+.featured-content-view {
+  .featured-heading {
+    margin-top: 60px;
+    z-index: 10;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .swipe-label {
+    color: #999999;
+    text-align: center;
+  }
+  .featured-slider {
+    overflow-y: visible;
+    .slider-pager {
+      position: relative;
+      bottom: 85px;
+      height: 20px;
+      z-index: 1;
+    }
+    .slider-slide {
+      width: 320px;
+      font-family: "open-sans";
+      img {
+        display: block;
+      }
+      .featured-display {
+        background-color: #000000;
+        position: relative;
+        @include box-sizing;
+      }
+      .featured-details {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+        padding: 5px 16px;
+        background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.85) , rgba(255, 255, 255, 0.5)); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.5)); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.5)); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.85) , rgba(255, 255, 255, 0.5)); /* Standard syntax */
+        h4, h5 {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin: 3px 5px;
+          color: #000000;
+        }
+      }
+    }
+  }
+}
+
+// hack to account for status bar on iOS7
+.platform-ios7.platform-cordova:not(.fullscreen) {
+  .featured-heading {
+    margin-top: 80px;
+  }
+}
+
+/* END Featured Page */
+
+/* Venue View Page */
+.venue-photo-slider {
+  top: 44px;
+  .venue-photo-slide {
+    max-height: 180px;
+  }
+}
+.view-venue-content.has-header {
+  color: #FFFFFF;
+}
+.view-venue-content {
+  .venue-header {
+    height: 60px;
+    position: relative;
+    clear: both;
+    margin: 8px 0;
+    .venue-logo {
+      @include border-radius(25px);
+      overflow: hidden;
+      background: #FFFFFF;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+    }
+    .venue-name-address {
+      h4 {
+        margin: 6px 0;
+      }
+      padding: 1px 0;
+      padding-left: 70px;
+    }
+  }
+  .venue-description {
+    font-size: 13px;
+    text-align: justify;
+    line-height: 16px;
+    color: #bdbdbd;
+  }
+  .venue-attributes {
+    margin-bottom: 2.5em;
+
+    h5 {
+      margin-bottom: 0;
+      font-size: 13px;
+      font-weight: bold;
+    }
+    .attr-val {
+      font-size: 12px;
+      color: #bdbdbd;
+    }
+  }
+  .venue-interact {
+    margin-bottom: 2em;
+
+    a {
+      background: #E3432E;
+      color: #fff;
+      padding: 1px 10px;
+      border-radius: 40px;
+      font-size: 38px;
+      margin-right: 10px;
+
+      &.map-icon {
+        padding: 1px 13px;
+      }
+    }
+  }
+}
+/* END Venue View Page */
+
+.page-header-container {
+  height: 63px;
+  position: fixed;
+  width: 100%;
+  h3, h4 {
+    padding-top: 18px;
+    margin: 0;
+  }
+}
+
+.centered {
+  text-align: center;
+}
+
+.padding {
+  padding: 10px 24px;
+}
+
+/* Loading screen */
+.loading-container {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+  .loading-icon {
+    @include border-radius(10px);
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: -30px;
+    margin-left: -30px;
+    height: 60px;
+    width: 60px;
+    background: #000000;
+    padding: 10px;
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+/* END Loading screen */
+
+/* About Venue Form */
+.about-venue-form-container {
+  margin-top: 20px;
+  input, textarea {
+    resize: none;
+    background: #444444;
+    padding: 5px 10px;
+    color: #999999;
+  }
+  input {
+    margin-bottom: 5px;
+  }
+  textarea {
+  }
+}
+/* END About Venue Form */
+
+/* Start Screen */
+.welcome-container {
+  padding-top: 60px;
+  .logo-container {
+    width: 50%;
+    margin: 0 auto;
+  }
+  .handwriting {
+    font-family: "yellowtailregular";
+    font-size: 36px;
+  }
+}
+
+.flex-spacer {
+  display: -webkit-flex-box;
+  display: box;
+  -webkit-box-flex: 1;
+}
+
+.start-buttons-inner-container {
+  @include box-sizing;
+  width: 100%;
+  display: -webkit-flex-box;
+  display: box;
+  align-self: flex-end;
+  -webkit-align-self: flex-end;
+  button.button-block, button.button-full {
+    margin-top: 0px;
+    margin-bottom: 5%;
+  }
+}
+.start-buttons-container {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-box-align: end;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  bottom: 0;
+}
+/* END Start Screen */
+
+/* Dark Overrides */
+.bar.bar-dark {
+  background-color: #000000;
+}
+.tabs.tabs-dark {
+  background-color: #222222;
+}
+.button.button-dark {
+  background-color: #222222;
+}
+/* END Dark Overrides */
+
+/* Bar Firetruck */
+.bar-firetruck {
+  background: #FC5533;
+  .title {
+    color: #FFF0F6;
+    text-transform: uppercase;
+    font-size: 24px;
+  }
+}
+/* END Bar Firetruck */
+
+/* Venue buttons */
+button.button-firetruck {
+  border: 0;
+  color: #FFF0F6;
+  background: #FC5533;
+  text-transform: uppercase;
+  font-size: 24px;
+  &:hover, &:active, &:visited {
+    color: #FFF0F6;
+    background: #FC5533;
+  }
+}
+button.button-ghost {
+  height: 38pt;
+  background: rgba(255, 255, 255, 0.17);
+  font-family: "open-sans";
+  color: #FFFFFF;
+  border: 0;
+  font-size: 27px;
+  padding: 0;
+  h3, h4, h5 {
+    line-height: 50px;
+    margin: 0;
+  }
+  &:hover, &:active, &:visited {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.17);
+  }  
+  &:active {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+.button-list {
+  button {
+    margin-bottom: 10px;
+  }
+}
+.button-category {
+  position: relative;
+  img.down-arrow {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+  }
+}
+.keyword-button-list {
+  margin-top: -10px;
+  button {
+    height: 42px;
+    background-color: #FFFFFF;
+    border: 0;
+    border-top: solid 1px #CDCDCD;
+    margin: 0px;
+    h5 {
+      font-weight: normal;
+      color: #000000;
+    }
+  }
+  button.keyword-button-list-item.selected {
+    h5 {
+      color: #fb5633;
+    }
+  }
+}
+/* END Venue buttons */
+
+/* Ionic Hacks */
+.has-header.has-page-title, .platform-android.platform-cordova .has-header.has-page-title, .platform-android.platform-cordova .bar-subheader.has-page-title {
+  top: 107px;  
+}
+
+.platform-ios7.platform-cordova:not(.fullscreen) .has-header.has-page-title {
+  top: 127px;
+}
+
+.has-footer.has-tabs {
+  bottom: 93px;
+}
+.sub-footer {
+  bottom: 49px !important;
+}
+/* END Ionic Hacks */

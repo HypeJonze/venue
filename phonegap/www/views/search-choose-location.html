@@ -1,0 +1,16 @@
+<ion-view right-buttons="rightButtons" title="{{logoTitle}}">
+  <div ng-include src="'views/loading.html'" data-ng-show="!menuDataLoaded"></div>
+  <div class="centered page-header-container has-header">
+    <h5>Where do you want to go out?</h5>
+  </div>
+  <ion-content padding="false" has-header="true" has-tabs="true" class="has-page-title">
+    <div class="button-list">
+      <button data-ng-click="$state.transitionTo('search_choose_keywords', { venueTypeId:$stateParams.venueTypeId })" class="button-list-item button-block button-ghost">
+        <h4 class="drop-shadow">Any Location</h4>
+      </button>
+      <button data-ng-click="$state.transitionTo('search_choose_keywords', { venueTypeId:$stateParams.venueTypeId, neighbourhoodId:neighbourhood.id})" ng-repeat="neighbourhood in menuData.neighbourhoods" class="button-list-item button-block button-ghost">
+        <h4 class="drop-shadow">{{neighbourhood.name}}</h4>
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

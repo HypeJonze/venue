@@ -1,0 +1,25 @@
+<ion-view right-buttons="rightButtons" title="{{logoTitle}}">
+  <ion-content padding="true" has-header="true" has-tabs="true">
+    <div ng-include src="'views/loading.html'" data-ng-show="submitting"></div>
+    <div>
+      <div class="centered"><h3>ABOUT VENUE</h3></div>
+      <p>
+        Venue is an awesome new app that helps you find a place to go based on your mood and interests. Search through our database of experiences in the Toronto core. Your results are filtered from the best to least matched and the relevance is indicated with a red circle at the top right corner of each photo.
+      </p>
+
+      <p>
+        We want your feedback; so don’t hesitate to send us an email with your comments. We are constantly improving our features to better your experience, so your opinion is valuable to us.
+      </p>
+    </div>
+
+    <div class="about-venue-form-container">
+      <div class="centered"><h3>Contact Us</h3></div>
+      <input ng-model="contact.name" type="text" class="input-lg full-width" placeholder="Name"/>
+      <textarea ng-model="contact.comment" class="input-lg full-width" rows="3"></textarea>
+      <button data-ng-click="submit()" class="button button-block button-firetruck">
+        Let's Hear it
+      </button>
+      <p class="small-text">If you enjoy our app, help us by writing a review in the App Store or Google Play Store.</p>
+    </div>
+  </ion-content>
+</ion-view>

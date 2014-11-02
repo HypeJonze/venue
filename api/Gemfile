@@ -1,0 +1,39 @@
+source 'https://rubygems.org'
+
+gem 'rails', '4.1.0'
+
+gem 'paperclip'
+gem 'curb'
+gem 'devise'
+gem 'active_model_serializers', '0.8.1'
+gem 'cancan', '~> 1.6.10'
+gem 'carrierwave', '0.10.0'
+gem 'fog', '1.20.0'
+gem 'mini_magick', '3.7.0' # a dependency of CarrierWave
+gem 'figaro'
+gem 'unf'
+gem 'sass-rails'
+gem 'google-api-client'
+gem 'dropzonejs-rails'
+gem "font-awesome-rails"
+gem 'rack-cors', :require => 'rack/cors'
+gem "geocoder", "~> 1.2.1"
+
+group :production do
+gem 'pg'
+end
+
+group :development, :test do
+  gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'pry-rails'
+  gem 'faker', '1.2.0'
+  gem 'fakeweb'
+  gem 'quiet_assets'
+  gem 'sqlite3'
+end
+
+group :test do
+  gem 'rspec-rails', '~> 2.14.1'
+  gem 'shoulda-matchers', '~> 2.6.1'
+  gem 'database_cleaner', '1.2.0'
+end

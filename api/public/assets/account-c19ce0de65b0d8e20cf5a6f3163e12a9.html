@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-1">
+      <h1>Account</h1>
+      <hr/>
+      <div class="account-container">
+        <div ng-animate="{enter:'fade-enter'}">
+          <div class="picture">
+            <img ng-src="{{user.picture}}"/>
+          </div>
+          <div>
+            <span>{{user.given_name}} {{user.family_name}}</span><br/>
+            <span>{{user.email}}</span><br/>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <a href="" data-ng-click="logout()" class="btn btn-warning">
+          Logout
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

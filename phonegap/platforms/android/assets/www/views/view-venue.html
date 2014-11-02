@@ -1,0 +1,40 @@
+<ion-view right-buttons="rightButtons" title="{{logoTitle}}">
+  <div ng-include src="'views/loading.html'" data-ng-show="!venueLoaded"></div>
+  <ion-slide-box class="venue-photo-slider" show-pager="true">
+    <ion-slide data-ng-repeat="photo in venue.photos" class="venue-photo-slide">
+      <img width="{{viewportWidth()}}" ng-src="{{photo.image.path + 'landscape_large_' + photo.image.filename}}" />
+    </ion-slide>
+  </ion-slide-box>
+  <ion-content padding="true" has-header="true" has-tabs="true" class="view-venue-content" style="top:{{viewportWidth()/2 + 46}}px">
+    <div data-ng-show="venueLoaded">
+      <div class="venue-header">
+        <div class="venue-logo">
+          <img width="100%" height="100%" ng-src="{{venue.logo.path + 'small_' + venue.logo.filename}}" />
+        </div>
+        <div class="venue-name-address">
+          <h4>{{venue.name}}</h4>
+          <h4>{{venue.address}}</h4>
+        </div>
+      </div>
+      <div class="venue-description">
+        {{venue.description}}
+      </div>
+      <div class="venue-attributes">
+        <div data-ng-repeat="attr in attributes" data-ng-if="venue[attr.key]">
+          <h5>{{attr.title}}</h5>
+          <div class="attr-val">{{venue[attr.key]}}</div>
+        </div>
+        <h5>Keywords</h5>
+        <ul class="keywords-list">
+          <li data-ng-repeat="keyword in venue.keywords" class="attr-val">{{keyword.name}}</li>
+        </ul>
+      </div>
+      <div class="venue-interact">
+        <map-link venue="venue"></map-link>
+<!--         <a ng-click="mapURL(venue.latitude, venue.longitude, venue.full_address, venue.name)" ng-show="hasIntent" class="map-icon"><i class="ion-ios7-location"></i></a>
+ -->        <a href="tel:{{venue.contact_phone}}" ng-show="venue.contact_phone"><i class="ion-ios7-telephone"></i></a>
+        <a href="mailto:{{venue.contact_email}}" ng-show="venue.contact_email"><i class="ion-ios7-email"></i></a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

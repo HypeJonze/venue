@@ -1,0 +1,288 @@
+<div class="container main">
+  <div id="main-container" class="col-sm-10">
+    <div class="main-content">
+      <div id="title-admin">
+        <h2><i class="fa fa-cogs"></i> Venues
+          <div class="badge">{{venuesCount}}</div>
+          <button class="btn btn-primary pull-right" style="margin-left: 10px;" ng-click="save()" ng-show="venueInOperation">Save</button> 
+          <button class="btn btn-warning pull-right" style="margin-left: 10px;" ng-click="cancel()" ng-show="venueInOperation">Cancel</button> 
+          <button class="btn btn-primary pull-right" ng-click="addNewVenue()" ng-show="!venueInOperation">Add Venue</button>
+        </h2>
+      </div>
+      <div class="row">
+        <div id="item-list" class="col-sm-5">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="searchString"/>
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" ng-click="applyStringfilter()">Filter</button>
+                <button ng-if="searchString" class="btn btn-warning" type="button" ng-click="removeStringfilter()">Remove Filter</button>
+              </span>
+            </div>
+          </div>
+          <div ng-show="venues.length > 0 && loaded">
+            <table class="table table-striped table-hover venues-list-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="venue in venues">
+                  <td>
+                    <a href="" ng-click="loadVenueForOperation(venue)">
+                      {{venue.id}}
+                    </a>
+                  </td>
+                  <td>
+                    <a href="" ng-click="loadVenueForOperation(venue)">
+                      {{venue.name}}
+                    </a>
+                  </td>
+                  <td>
+                    <a href="" ng-click="destroyVenue(venue)">
+                      <div class="availability-x pull-right">
+                        <i class="fa fa-times-circle"></i>
+                      </div>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="alert alert-info" ng-show="venues.length == 0 && noVenues">
+            You do not have any venues yet. Click 'Add Venue' to begin adding one now.
+          </div>
+          <pagination ng-if="venuesCount && loaded" total-items="venuesCount" page="currentPage" num-pages="numPages" on-select-page="fetchVenues(page)" max-size="5" rotate="true" boundary-links="true" direction-links="false"></pagination>
+
+        </div>
+        <div class="col-sm-7" ng-show="venueInOperation">
+          <div id="title-user" style="margin-bottom: 40px; display: none;">
+            <h2>
+              <button class="btn btn-primary pull-right" style="margin-left: 10px;">Save</button>
+            </h2>
+          </div>
+          <h4 class="subheading">Venue Listing Info</h4>
+          <div class="subsection">
+            <div class="form-group" ng-if="venueInOperation && userRole().title == 'admin'">
+              <label for="venue_name">Venue State</label><br/>
+              <button chkbox-button ng-class="{'btn-success': venueInOperation.enabled, 'btn-warning': !venueInOperation.enabled}" class="btn" button-text="Active" checkbox-model="venueInOperation.enabled"></button>
+              <button chkbox-button ng-class="{'btn-primary': venueInOperation.featured, 'btn-default': !venueInOperation.featured}" class="btn" button-text="Featured" checkbox-model="venueInOperation.featured"></button>
+            </div>
+            <div class="form-group">
+              <label for="venue_name">Venue Name</label>
+              <input type="text" class="form-control" name="venue_name" ng-model="venueInOperation.name"/>
+            </div>
+            <div class="form-group">
+              <label for="location_neighbourhood">Venue Neighbourhood</label>
+              <select class="form-control" name="location_neighbourhood" ng-model="venueInOperation.neighbourhood_id" ng-options="neighbourhood.id as neighbourhood.name for neighbourhood in neighbourhoods">
+              </select> 
+            </div>
+            <div class="form-group">
+              <label for="location_intersection">Main Intersection</label>
+              <input type="text" class="form-control" name="location_intersection" ng-model="venueInOperation.intersection">
+            </div> 
+            <div class="form-group" ng-if="userRole().title == 'admin'">
+              <label for="type">Venue Type</label>
+              <div class="well">
+                <div class="row" ng-repeat="row in venueTypeRows" style="margin:10px 0;">
+                  <div class="col-sm-4" ng-repeat="venue_type in row">
+                    <button chkbox-button class="btn btn-default" button-text="{{venue_type.name}}" checkbox-model="venueTypeStates[venue_type.id]" on-change="venueTypeToggled(venue_type)" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group" ng-if="userRole().title == 'admin'">
+              <label for="type">
+                Keywords
+              </label>
+              <div class="row" style="margin-bottom:10px;">
+                <div class="col-sm-6">
+                  <select class="form-control" ng-model="visibleKeywordCategoryId" ng-options="category.id as category.name for category in availableCategories">
+                    <option value="">add keyword from category...</option>
+                  </select> 
+                </div>
+                <div class="col-sm-4">
+                  <select class="form-control" ng-show="visibleKeywordCategoryId" ng-model="selectedKeyword" ng-options="keyword as keyword.name for keyword in categoriesMapping[visibleKeywordCategoryId].keywords">
+                    <option value="">choose keyword</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <button ng-show="selectedKeyword" class="btn btn-success" ng-click="handleAddKeyword(selectedKeyword);visibleKeywordCategoryId = null;selectedKeyword=null;"><i class="fa fa-plus"></i></button>
+                </div>
+              </div>
+              <div class="well keyword-label-well">
+                <span class="label label-primary" ng-repeat="keyword_id in currentKeywords">
+                  {{categoriesMapping[currentKeywordsMapping[keyword_id].category_id].category.name}}: <i>{{currentKeywordsMapping[keyword_id].name}}</i>
+                  &nbsp;
+                  <i class="fa fa-times" style="img-remove" ng-click="keywordToggled(currentKeywordsMapping[keyword_id])"></i>
+                </span>
+                <div style="clear:both;"></div>
+              </div>
+            </div>
+          </div>
+          <h4 class="subheading">Venue Profile Info</h4>
+          <div class="subsection">
+            <div class="form-group">
+              <label for="description_long">Description - Long</label>
+              <textarea class="form-control" name="description_long" rows="10" ng-model="venueInOperation.description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="hours">Hours</label>
+              <textarea class="form-control" name="hours" style="margin-top: 0px; margin-bottom: 0px; height: 210px;" ng-model="venueInOperation.hours"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="parking">Parking</label>
+              <input type="text" class="form-control" name="parking" ng-model="venueInOperation.parking"/>
+            </div>
+            <div class="form-group">
+              <label>Restos, bars, workspaces:</label>
+            </div>
+            <div class="form-group">
+              <label for="food">Food</label>
+              <input type="text" class="form-control" name="food" ng-model="venueInOperation.food"/>
+            </div>
+            <div class="form-group">
+              <label for="specialty">Specialty</label>
+              <input type="text" class="form-control" name="specialty" ng-model="venueInOperation.specialty"/>
+            </div>
+            <div class="form-group">
+              <label for="specialty">Specials</label>
+              <input type="text" class="form-control" name="specials" ng-model="venueInOperation.specials"/>
+            </div>
+            <div class="form-group">
+              <label for="style">Style</label>
+              <input type="text" class="form-control" id="style" ng-model="venueInOperation.style"/>
+            </div>
+            <div class="form-group">
+              <label for="price_range">Price Range</label>
+              <input type="text" class="form-control" name="price_range" ng-model="venueInOperation.price_range"/>
+            </div>
+            <div class="form-group">
+              <label>Clubs, live music:</label>
+            </div>
+            <div class="form-group">
+              <label for="crowd">Crowd</label>
+              <input type="text" class="form-control" name="crowd" ng-model="venueInOperation.crowd">
+            </div>
+            <div class="form-group">
+              <label for="music">Music</label>
+              <input type="text" class="form-control" name="music" ng-model="venueInOperation.music">
+            </div>
+            <div class="form-group">
+              <label for="dress_code">Dress code</label>
+              <input type="text" class="form-control" name="club__dress_code" ng-model="venueInOperation.dress_code">
+            </div>
+            <div class="form-group">
+              <label for="club__entry_fee">Entry fee</label>
+              <input type="text" class="form-control" name="club__entry_fee" ng-model="venueInOperation.entry_fee">
+            </div>
+            <div class="form-group">
+              <label>Special Events:</label>
+            </div>
+            <div class="form-group">
+              <label for="event__date">Date</label>
+              <input type="text" class="form-control" name="event__date" ng-model="venueInOperation.date">
+            </div>
+          </div>
+          <h4 class="subheading">Logo</h4>
+          <div class="subsection">
+            <div class="form-group" ng-show="logoSrc">
+              <div style="width:200px;margin:0 auto;" class="thumbnail">
+                <img class="img-responsive" ng-src="{{logoSrc}}" />
+              </div>
+            </div>
+            <div class="form-group">
+              <div file-dropzone="[image/png, image/jpeg, image/jpg, image/gif]" file="venueInOperation.logo_data" file-name="venueInOperation.logo_file_name" file-type="venueInOperation.logo_file_type" data-max-file-size="4">
+                <form action="/" class="dropzone dz-clickable dz-square">
+                  <div class="dz-default dz-message">
+                    <span>Drop files here to upload</span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <h4 class="subheading">Photos</h4>
+          <div class="subsection">
+            <div class="form-group">
+              <div data-ng-repeat="row in photos.rows" class="row">
+                <div data-ng-repeat="photo in row" class="col-sm-6">
+                  <div class="thumbnail">
+                    <img data-ng-src="{{ photo.src }}">
+                  </div>
+                  <div style="position:absolute;right:22px;top:5px;">
+                    <i class="fa fa-times-circle img-remove" ng-click="removePhoto(photo)"></i>
+                  </div>
+                </div>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+            <div class="form-group">
+              <div file-dropzone="[image/png, image/jpeg, image/jpg, image/gif]" file="photo_data" file-name="photo_file_name" file-type="photo_file_type" data-max-file-size="4">
+                <form action="/" class="dropzone dz-clickable dz-square">
+                  <div class="dz-default dz-message">
+                    <span>Drop files here to upload</span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <h4 class="subheading">Full Address</h4>
+          <div class="subsection">
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input type="text" class="form-control" name="address" ng-model="venueInOperation.address">
+            </div>
+            <div class="form-group">
+              <label for="address2">Address 2</label>
+              <input type="text" class="form-control" name="address2" ng-model="venueInOperation.address_secondary">
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="zip">Postal Code</label>
+                <input type="text" class="form-control" name="zip" ng-model="venueInOperation.zip">
+              </div>
+              <div class="form-group">
+                <label for="email">City</label>
+                <input type="text" class="form-control" id="city" ng-model="venueInOperation.city">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="email">Province</label>
+                <input type="email" class="form-control" id="email" value="Ontario" disabled="">
+              </div>
+              <div class="form-group">
+                <label for="email">Country</label>
+                <input type="email" class="form-control" id="email" value="Canada" disabled="">
+              </div>
+            </div>
+          </div>
+          <div style="clear:both;"></div>
+          <h4 class="subheading">Reservation Info</h4>
+          <div class="subsection">
+            <div class="form-group">
+              <label for="contact_email">Email for Reservations</label>
+              <input type="text" class="form-control" name="contact_email" ng-model="venueInOperation.contact_email">
+            </div>
+            <div class="form-group">
+              <label for="contact_phone">Phone for Reservations</label>
+              <input type="text" class="form-control" name="contact_phone" ng-model="venueInOperation.contact_phone">
+            </div>
+          </div>
+          <h2>
+            <button class="btn btn-primary pull-right" ng-click="save()">Save</button> 
+          </h2>
+        </div> <!-- end main content -->
+      </div> <!-- end main-container -->
+    </div> <!-- end row -->
+  </div> <!-- end entire web container-->
+  <div id="footer_area">
+    <div class="container" style="clear:both;"></div>
+  </div>
+  <div>
+    (c) 2013 Venue App
+  </div>
+</div>

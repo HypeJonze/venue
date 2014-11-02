@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>Venue Toronto</title>
+    <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+    <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+    <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+    <!--[if (gte IE 9)|!(IE)]><!--> <!--<![endif]-->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- CSS
+      The css utilizes bootstrap with the grid system from skeleton, modified to 1200px wide instead of 960.
+      The tablet and mobile grid may require adjustment.  
+    ================================================== -->
+    
+    <%= stylesheet_link_tag("application") %>
+  </head>
+  <body ng-app="VenueAdminApp">
+    <header>
+      <div id="header_area">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-11">
+              <nav class="navbar navbar-default" role="navigation">
+                <a class="navbar-brand" href="#"><img ng-src="{{logoUrl()}}" height="50" alt="" title="" border="0"></a>
+              </nav>
+            </div>
+            <div class="col-sm-1">
+              <a class="navbar-brand" href="#" ng-click="logout()">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-2">
+          <div ui-view="menu">
+          </div>
+        </div>
+        <div class="col-sm-10">
+          <div ui-view="main">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "js_manifest" %>
+    <%= javascript_include_tag "access" %>
+    <%= javascript_include_tag "angular" %>
+    <%= javascript_include_tag "angular-animate" %>
+    <%= javascript_include_tag "angular-cookies" %>
+    <%= javascript_include_tag "angular-resource" %>
+    <%= javascript_include_tag "angular-route" %>
+    <%= javascript_include_tag "angular-sanitize" %>
+    <%= javascript_include_tag "angular-ui-router" %>
+    <%= javascript_include_tag "ui-bootstrap-tpls.min" %>
+    <%= javascript_include_tag "app" %>
+    <%= javascript_include_tag "directives" %>
+    <%= javascript_include_tag "factory" %>
+    <%= javascript_include_tag "controllers" %>
+    <%= javascript_include_tag "states" %>
+    <script src="https://apis.google.com/js/client:plus.js?onload=gpAsyncInit"></script>
+
+  </body>
+</html>

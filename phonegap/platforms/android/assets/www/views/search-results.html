@@ -1,0 +1,25 @@
+<ion-view right-buttons="rightButtons" title="{{logoTitle}}">
+  <div ng-include src="'views/loading.html'" data-ng-show="contentLoading"></div>
+  <ion-content padding="false" has-header="true" has-tabs="true" class="search-results-content" ng-show="!contentLoading">
+    <div ng-if="noMatches" class="no-matches-message">
+      <span>That's a great idea for a venue.</span><br/>
+      <span>No one has thought of that yet. We recommend you check out some of these other awesome venues.</span>
+    </div>
+    <div class="row-container" data-ng-repeat="row in results">
+      <div class="row">
+        <div data-ng-click="$state.transitionTo('view_venue', {venueId:result.id})" data-ng-repeat="result in row" class="col col-50">
+          <div class="venue-search-result-tile">        
+            <div ng-if="keywordIdsForSearch.length > 0 && !noMatches" class="keyword-count-badge">
+              <span class="badge badge-assertive">{{countKeywordMatches(result)}}</span>
+            </div>
+            <img data-ng-if="result.photos.length > 0" width="100%" ng-src="{{result.photos[0].image.path + 'square_small_' + result.photos[0].image.filename}}" />
+            <div class="venue-search-result-info">
+              <h5>{{result.name}}</h5>
+              <h6>{{result.intersection}}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

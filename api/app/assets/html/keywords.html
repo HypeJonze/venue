@@ -1,0 +1,96 @@
+<div class="container main">
+  <div id="main-container" class="col-sm-10">
+    <div class="main-content">
+      <div id="title-admin">
+        <h2><i class="fa fa-cogs"></i> Keywords  
+          <button class="btn btn-primary pull-right" style="margin-left: 10px;" ng-click="save()" ng-show="keywordInOperation">Save</button> 
+          <button class="btn btn-warning pull-right" style="margin-left: 10px;" ng-click="cancel()" ng-show="keywordInOperation">Cancel</button> 
+          <button class="btn btn-primary pull-right" ng-click="addNewKeyword()" ng-show="!keywordInOperation">Add Keyword</button>
+        </h2>
+      </div>
+      <div class="row">
+        <div id="item-list" class="col-sm-7">
+          <div ng-if="data" ng-show="keywords.length">
+            <table class="table table-striped table-hover venues-list-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="keyword in keywords">
+                  <td>
+                    <a href="" ng-click="loadKeywordForOperation(keyword)">
+                      {{keyword.id}}
+                    </a>
+                  </td>
+                  <td>
+                    <a href="" ng-click="loadKeywordForOperation(keyword)">
+                      {{data.categories[keyword.category_id].name}}: <i>{{keyword.name}}</i>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="" ng-click="destroyKeyword(keyword)">
+                      <div class="availability-x pull-right">
+                        <i class="fa fa-times-circle"></i>
+                      </div>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="alert alert-info" ng-show="keywords.length == 0 && noKeywords">
+            You do not have any keywords yet. Click 'Add Keyword' to begin adding one now.
+          </div>
+        </div>
+        <div class="col-sm-5" ng-show="keywordInOperation">
+          <div id="title-user" style="margin-bottom: 40px; display: none;">
+            <h2>
+              <button class="btn btn-primary pull-right" style="margin-left: 10px;">Save</button>
+            </h2>
+          </div>
+          <h4 class="subheading">Keyword Info</h4>
+          <div class="subsection">
+            <div class="form-group" ng-if="userRole().title == 'admin'">
+              <label for="type">Venue Type</label>
+              <div class="well" ng-show="!keywordInOperation.id">
+                <div class="row" ng-repeat="row in venueTypeRows" style="margin:10px 0;">
+                  <div class="col-sm-6" ng-repeat="venue_type in row">
+                    <button chkbox-button class="btn btn-default" button-text="{{venue_type.name}}" checkbox-model="venueTypeStates[venue_type.id]" on-change="venueTypeToggled(venue_type)" />
+                  </div>
+                </div>
+              </div>
+              <div ng-show="keywordInOperation.id">
+                <div class="label btn-primary" ng-repeat="venue_type in keywordInOperation.venue_types" style="margin-right:10px;font-size:100%;">{{venue_type.name}}</div>
+                <div style="clear:both;"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="keyword_name">Category</label>
+              <select ng-cloak ng-show="!keywordInOperation.id" name="keyword_category" class="form-control" ng-model="keywordInOperation.category_id" ng-options="category.id as category.name for category in availableCategories">
+                <option value="">Choose a Keyword Category...</option>
+              </select> 
+              <input class="form-control" disabled="" ng-value="data.categories[keywordInOperation.category_id].name" ng-if="keywordInOperation.id" ng-cloak/>
+            </div> 
+            <div class="form-group">
+              <label for="keyword_name">Name</label>
+              <input type="text" class="form-control" name="keyword_name" ng-model="keywordInOperation.name"/>
+            </div> 
+          </div>
+          <h2>
+            <button class="btn btn-primary pull-right" ng-click="save()">Save</button> 
+          </h2>
+        </div> <!-- end main content -->
+      </div> <!-- end main-container -->
+    </div> <!-- end row -->
+  </div> <!-- end entire web container-->
+  <div id="footer_area">
+    <div class="container" style="clear:both;"></div>
+  </div>
+  <div>
+    (c) 2013 Venue App
+  </div>
+</div>
